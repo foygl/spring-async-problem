@@ -22,14 +22,14 @@ public class ApplicationRunner implements CommandLineRunner {
     public void run(final String... args) throws Exception {
         LOGGER.info("Running application");
 
-        List<Future<Boolean>> eventConsistencyResults = new ArrayList<>();
+        List<Future<Boolean>> asyncResults = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            eventConsistencyResults.add(asyncBean1.callAsync1(i));
+            asyncResults.add(asyncBean1.callAsync1(i));
         }
 
-        for (Future<Boolean> eventConsistencyResult : eventConsistencyResults) {
-            eventConsistencyResult.get();
+        for (Future<Boolean> asyncResult : asyncResults) {
+            asyncResult.get();
         }
     }
 }
