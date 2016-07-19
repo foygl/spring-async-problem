@@ -1,6 +1,6 @@
 # Proof of concept for problem with Spring @Async blocking
 
-There is an issue introduced in Spring 4.2.6.RELEASE (used by Spring boot 1.3.4.RELEASE) which means that it is possible for `@Async` annotated method calls to become blocked. This happens when you have nested `@Async` annotated calls which use the default task executor, and you have a task executor defined in your application context (but not explicitly used).
+There is an issue introduced in Spring 4.2.6.RELEASE (used by Spring Boot 1.3.4.RELEASE) which means that it is possible for `@Async` annotated method calls to become blocked. This happens when you have nested `@Async` annotated calls which use the default task executor, and you have a task executor defined in your application context (but not explicitly used).
 
 ## Running proof of concept
 
@@ -16,4 +16,4 @@ Removing the `unusedTaskExecutor` from `AppConfig` or increasing its concurrency
 
 Removing the nested async call causes the problem to go away which implies this is only an issue for nested async calls (or there is something else subtle going on).
 
-Downgrading the Spring boot version to 1.3.3.RELEASE (i.e. Spring 4.2.5.RELEASE) makes the problem go away, so this was introduced in Spring 4.2.6.RELEASE. Upgrading to Spring boot version 1.4.0.RC1 (i.e. Spring 4.3.1.RELEASE) shows this problem still exists in the latest version.
+Downgrading the Spring Boot version to 1.3.3.RELEASE (i.e. Spring 4.2.5.RELEASE) makes the problem go away, so this was introduced in Spring 4.2.6.RELEASE. Upgrading to Spring Boot version 1.4.0.RC1 (i.e. Spring 4.3.1.RELEASE) shows this problem still exists in the latest version.
