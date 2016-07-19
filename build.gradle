@@ -1,0 +1,25 @@
+buildscript {
+    ext {
+        // springBootVersion = '1.3.3.RELEASE' // Works
+        springBootVersion = '1.3.4.RELEASE' // Broken
+        //springBootVersion = '1.3.6.RELEASE' // Broken (Latest)
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+}
