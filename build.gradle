@@ -1,11 +1,15 @@
 buildscript {
     ext {
-        // springBootVersion = '1.3.3.RELEASE' // Works
+        //springBootVersion = '1.3.3.RELEASE' // Works
         springBootVersion = '1.3.4.RELEASE' // Broken
         //springBootVersion = '1.3.6.RELEASE' // Broken (Latest)
+        //springBootVersion = '1.4.0.RC1' // Broken (Latest pre-release)
     }
     repositories {
         mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -18,6 +22,9 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
 }
 
 dependencies {

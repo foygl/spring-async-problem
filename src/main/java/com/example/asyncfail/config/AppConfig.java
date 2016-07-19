@@ -14,6 +14,10 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class AppConfig {
 
+    /*
+     * Note: Removing this bean or increasing the concurrency limit to 10+ makes the blocking problem go away which
+     * implies that this bean is overriding the default task executor created by Spring.
+     */
     @Bean(name = "unusedTaskExecutor")
     public Executor unusedTaskExecutor() {
         final SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor();

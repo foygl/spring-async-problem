@@ -21,8 +21,11 @@ public class AsyncBean1 {
     public Future<Boolean> callAsync1(final int count) throws ExecutionException, InterruptedException {
         LOGGER.info(count + ": Async call to async bean 1.");
 
+        /*
+         * Note: Removing this nested async call causes the blocking problem to go away which implies this is only an
+         * issue for nested async calls.
+         */
         final Future<Boolean> eventIdsFromMongoTask = asyncBean2.callAsync2(count);
-
         eventIdsFromMongoTask.get();
 
         return new AsyncResult<>(true);
